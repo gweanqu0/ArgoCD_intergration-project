@@ -104,9 +104,5 @@ jobs:
           kubectl apply -f focus-timer-app/focus-deployment.yaml
           kubectl apply -f focus-timer-app/focus-service.yaml
           kubectl get all -n focus
+
           
-          kubectl set image deployment/${{ env.K8S_DEPLOYMENT }} \
-            ${{ env.K8S_CONTAINER }}=${{ env.ECR_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_number }} \
-            -n ${{ env.K8S_NAMESPACE }}
-          kubectl rollout status deployment/${{ env.K8S_DEPLOYMENT }} -n ${{ env.K8S_NAMESPACE }}
-          kubectl get pods -l app=${{ env.K8S_CONTAINER }} -n ${{ env.K8S_NAMESPACE }}
