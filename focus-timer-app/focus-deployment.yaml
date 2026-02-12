@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: focus-deployment
+  name: ${APP_NAME}-deployment
   labels:
-    app: focus
+    app: ${APP_NAME}
 spec:
-  replicas: 2
+  replicas: ${REPLICAS}
   selector:
     matchLabels:
-      app: focus
+      app: ${APP_NAME}
   template:
     metadata:
       labels:
-        app: focus
+        app: ${APP_NAME}
     spec:
       containers:
-        - name: focus
-          image: focus-timer
+        - name: ${APP_NAME}
+          image: ${ECR_REGISTRY}/${APP_NAME}:${IMAGE_TAG}
           ports:
-            - containerPort: 80
+            - containerPort: ${CONTAINER_PORT}
